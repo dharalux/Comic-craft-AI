@@ -1,0 +1,68 @@
+from pydantic import BaseModel, Field
+
+
+class PromptRequest(BaseModel):
+
+    story_prompt: str = Field(
+        min_length=5,
+        max_length=3000
+    )
+
+    character_name: str = "Alex"
+
+    setting: str = "enchanted forest"
+
+    tone: str = "light-hearted"
+
+    art_style: str = "comic book"
+
+
+class PanelOutline(BaseModel):
+
+    panel_number: int
+
+    title: str
+
+    scene_description: str
+
+    image_prompt: str
+
+
+class ComicOutline(BaseModel):
+
+    panels: list[PanelOutline]
+
+
+class PanelStory(BaseModel):
+
+    panel_number: int
+
+    caption: str
+
+    narration: str
+
+    dialogue: list[str] = []
+
+
+class ComicStory(BaseModel):
+
+    panels: list[PanelStory]
+
+
+class ComicPanel(BaseModel):
+
+    panel_number: int
+
+    title: str
+
+    scene_description: str
+
+    image_prompt: str
+
+    image_path: str
+
+    caption: str
+
+    narration: str
+
+    dialogue: list[str] = []

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ title }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>
+            {{ title }}
+        </h1>
+
+        <a
+            href="/"
+            class="button"
+        >
+            New Comic
+        </a>
+
+    </div>
+
+
+    {% for panel in layout %}
+
+    <div class="panel">
+
+        <h2>
+            Panel {{ panel.panel_number }}
+        </h2>
+
+
+        <img
+            src="{{ panel.image_path }}"
+            alt="Comic panel"
+        >
+
+
+        <h3>
+            {{ panel.title }}
+        </h3>
+
+
+        <p>
+            {{ panel.narration }}
+        </p>
+
+
+        {% if panel.dialogue %}
+
+        <div class="dialogue">
+
+            {% for line in panel.dialogue %}
+
+            <p>
+                "{{ line }}"
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+
+    <div class="download">
+
+        <a
+            class="button"
+            href="/download?path={{ pdf_path }}"
+        >
+            📄 Download PDF
+        </a>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
